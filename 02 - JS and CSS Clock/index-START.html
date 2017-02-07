@@ -61,11 +61,50 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: right;
+      /*transform: rotate(90deg);*/
     }
 
   </style>
 
   <script>
+
+
+
+    var runClock = function () {
+      var date = new Date();
+
+      var hours = date.getHours();
+
+      if (hours >= 12) {
+        hours -= 12;
+      }
+
+      var minutes = date.getMinutes();
+
+      var seconds = date.getSeconds();
+
+      var hourDegree = 90 + (hours / 12) * 360;
+
+      var minuteDegree = 90 + (minutes / 60) * 360;
+
+      var secondDegree = 90 + (seconds / 60) * 360;
+
+      
+      var hour = document.querySelector('.hour-hand');
+      transformStringHour = 'rotate(' + hourDegree + 'deg)';
+      hour.style.transform = transformStringHour;
+
+      var minute = document.querySelector('.min-hand');
+      transformStringMinute = 'rotate(' + minuteDegree + 'deg)';
+      minute.style.transform = transformStringMinute;
+
+      var second = document.querySelector('.second-hand');
+      transformStringSecond = 'rotate(' + secondDegree + 'deg)';
+      second.style.transform = transformStringSecond;
+    }
+
+    setInterval(runClock, 1000)
 
 
   </script>
