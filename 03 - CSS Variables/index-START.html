@@ -22,6 +22,18 @@
 
   <style>
 
+  :root {
+    --spacing: 10px;
+    --blur: 0px;
+    --base: red;
+  }
+
+  img {
+    padding: var(--spacing);
+    background-color: var(--base);
+    filter: blur(var(--blur));
+  }
+
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -48,6 +60,27 @@
   </style>
 
   <script>
+
+  var inputs = document.querySelectorAll('.controls input');
+  console.log(inputs);
+
+  var handleChange = function (event) {
+    console.log(event.target.name);
+
+    var suffix = this.dataset.sizing || '';
+
+    document.documentElement.style.setProperty('--' + event.target.name, event.target.value + suffix)
+
+  }
+
+  inputs.forEach((node) => {
+    node.addEventListener('change', handleChange);
+  })
+
+    inputs.forEach((node) => {
+    node.addEventListener('onmousemove', handleChange);
+  })
+
   </script>
 
 </body>
