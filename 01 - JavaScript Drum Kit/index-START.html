@@ -59,6 +59,45 @@
 
 <script>
 
+  var keys = document.querySelectorAll('.key'); 
+
+  console.log(keys);
+
+  window.addEventListener('keydown', ((e) => {
+
+    //if the events data key matches a data key on one of the keys in keys array
+      //add classname of playing to that key
+
+    keys.forEach((key) => {
+      if (Number(e.keyCode) === Number(key.dataset.key)) {
+        key.classList.add('playing');
+        var audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        audio.currentTime = 0;
+        audio.play();
+      }
+    })
+
+  }))
+
+  window.addEventListener('transitionend', ((e) => {
+    e.target.classList.remove('playing')
+  }))
+
+  // for (var i = 0; i < keys.length; i++) {
+  //   keys[i].addEventListener('keydown', function (e) {
+  //     console.log(e);
+  //     console.log('key pressed');
+  //   })
+  //   console.log(keys[i])
+  // }
+
+
+  // keys.forEach((key) => {
+  //   key.addEventListener('onkeydown', (() => {
+  //     console.log(this)
+  //   }))
+  // })
+
 </script>
 
 
