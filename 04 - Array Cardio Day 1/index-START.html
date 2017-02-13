@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪</title>
+  <src
 </head>
 <body>
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
@@ -88,6 +89,16 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    var counts = data.reduce(function(obj, item){
+      if(!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item] ++;
+      return obj
+    }, {});
+
+    console.log(counts)
 
   </script>
 </body>
