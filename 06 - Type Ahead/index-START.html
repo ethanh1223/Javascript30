@@ -17,6 +17,62 @@
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
+cities = [];
+
+fetch(endpoint)
+  .then(blob => blob.json())
+  .then(data => cities.push(data))
+
+//REFACTOR TO USE FILTER?
+
+//select the input from queryselector
+//add an event listener for keydown
+  //grab input data
+  //filter through cities for those that contain input string
+  //populate filtered array in dropdown?
+
+var search = document.querySelector('input');
+
+// search.addEventListener('keydown', function (e) {
+//   var filteredCities = cities.filter(function (city) {
+//     return city[0][]
+//   })
+//   console.log(filteredCities);
+// })
+var list = document.querySelector('.suggestions');
+
+search.addEventListener('keydown', function(e) {
+  var filteredCities = [];
+
+  for(var i = 0; i < cities[0].length; i++) {
+    if (cities[0][i].city.toLowerCase().includes(e.target.value.toLowerCase()) || cities[0][i].state.toLowerCase().includes(e.target.value.toLowerCase())) {
+      filteredCities.push(cities[0][i])
+    }
+  }
+
+  var html = filteredCities.map(city => {
+    return `
+      <li>
+        <span class="city">${city.city}, ${city.state}</span>
+        <span class="population">${city.population}</span>
+      </li>
+    `;
+
+  }).join('')
+
+list.innerHTML = html;
+
+})
+
+
+
+
+
+
+
+
+
+
 </script>
   </body>
 </html>
