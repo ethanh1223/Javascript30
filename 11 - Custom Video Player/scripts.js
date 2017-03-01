@@ -2,6 +2,9 @@ var video = document.querySelector('video')
 var playButton = document.querySelector('.toggle')
 var playbackSpeedBar = document.querySelector('input[name="playbackRate"]');
 var skipButtons = document.querySelectorAll('.player__controls button:not(.toggle)');
+var volumeBar = document.querySelector('input[name="volume"]');
+
+
 
 video.playbackRate = playbackSpeedBar.value;
 
@@ -30,6 +33,18 @@ video.addEventListener('pause', (e => {
 playbackSpeedBar.addEventListener('change', (e => {
   video.playbackRate = e.target.value;
 }));
+
+volumeBar.addEventListener('change', (e => {
+  video.volume = e.target.value;
+}));
+
+skipButtons.forEach(button => {
+  button.addEventListener('click', (e => {
+    video.currentTime += Number(e.target.dataset.skip);
+  }))
+})
+
+
 
 
 
