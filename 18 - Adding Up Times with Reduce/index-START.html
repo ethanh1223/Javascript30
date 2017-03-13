@@ -182,6 +182,46 @@
     </li>
   </ul>
 <script>
+  var videos = document.querySelectorAll('li');
+
+  var lengths = [];
+
+  videos.forEach(video => {
+    lengths.push(video.dataset.time.split(':'));
+  })
+
+  var minutes = lengths.reduce((acc, val) => {
+    return acc + Number(val[0]);
+  }, 0)
+
+  var seconds = lengths.reduce((acc, val) => {
+    return acc + Number(val[1]);
+  }, 0)
+
+  var totalSeconds = minutes * 60 + seconds;
+
+  var parseTime = function (totalSeconds) {
+    var hourInSeconds = 60 * 60;
+    var hours = 0;
+
+    var minuteInSeconds = 60;
+    var minutes = 0;
+
+    while (totalSeconds - hourInSeconds > 0) {
+      totalSeconds -= hourInSeconds;
+      hours ++;
+    }
+
+    while (totalSeconds - minuteInSeconds > 0) {
+      totalSeconds -= minuteInSeconds;
+      minutes ++;
+    }
+
+    return hours + ':' + minutes + ':' + totalSeconds;
+  }
+
+  console.log(parseTime(totalSeconds));
+
 </script>
 </body>
 </html>
